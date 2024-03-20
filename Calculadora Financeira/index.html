@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Dancing+Script&family=Montserrat:wght@700&display=swap"
+        rel="stylesheet" />
+
+
+        <link rel="shortcut icon" href="">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Calculadora Financiera</title>
+</head>
+
+<body>
+    <main>
+
+        <div class="screen1"> <!--Home screen-->
+            <h1>Calculadora Financiera</h1>
+            <p>Desistentes por Falta de <b>Motivação</b></p>
+
+            <span>Quantidade de Academias: </span>
+            <input type="number" id="inputQTDAcad"><br> <br>
+            <span> Mensalidade da academia: </span>
+            <input type="number" id="inputMensalidade"><br> <br>
+            <span> Quantidade de desistentes por ano: </span>
+            <input type="number" id="inputDesistentesAno"> <br> <br>
+
+            <button onclick="CalcularPrejuizo()">CalcularPrejuizo</button>
+        </div>
+
+        
+
+        <div id="message"></div>
+  
+
+</body>
+
+</html>
+
+<script>
+    function CalcularPrejuizo() {
+        var qtdAcads = Number(inputQTDAcad.value)
+        var mensalidadeAcad = Number(inputMensalidade.value);
+        var qtdDesistentes = Number(inputDesistentesAno.value);
+
+        var totalParticipantes = 466 //TOTAL DE PARTICIPANTES DA PESQUISA
+
+        var porcentagemDesistentesMotivação = 24.89 / 100 //24%(116) DOS 466 FORAM OS QUE DESISTIRAM POR FALTA DE MOTIVAÇÃO
+
+        var numeroDesistentes = qtdDesistentes * porcentagemDesistentesMotivação
+
+        var prejuizoMensal = numeroDesistentes * mensalidadeAcad // PREJUÍZO MENSAL
+
+        var prejuizoAnual = prejuizoMensal * 12;
+
+        var total =  prejuizoAnual * qtdAcads;
+        
+
+        message.innerHTML = `
+    <div class="message">
+        Ao adquirir nosso produto, você estaria deixando de perder uma quantia de: 
+        <div class="message__value">${total.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL' })} anualmente!</div>
+    </div>
+`;
+ 
+    }
+</script>
